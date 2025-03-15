@@ -22,15 +22,14 @@ docker pull cznic/knot-resolver
 The command below runs the Docker image and displays the command prompt that allows you to configure the application.
 
 ```bash
-docker run -Pit --network=host cznic/knot-resolver
+docker run -it --network=host cznic/knot-resolver
 ```
 
 Command line parameters:
 
-* -P, --publish-all: Publish all the exposed ports to the host. Docker binds each exposed port to a random port on the host.
 * -t, --tty: Allocate a pseudo-TTY
 * -i, --interactive: Keep STDIN open even if not attached
-* --network=host: This allows you to access all ports from the local host and other machines on the network.
+* --network=host: This allows you to access all ports served by the container from the local host and other machines on the network.
 
 Knot Resolver is now listening on all network interfaces and you can see the configuration command prompt.
 
@@ -136,6 +135,10 @@ The output from tcpdump shows two packets. The output should look like this:
 ```
 
 The `Google is not allowed here.` message has been returned by the DNS server to prove the response came from Knot Resolver.
+
+## Conclusion
+
+Congratulations! You have successfully set up a DNS server that blocks DNS requests for malicious sites. The next step is to create an automation that checks blacklisted domains, e.g., https://fabriziosalmi.github.io/blacklists/, and automatically updates the Knot Resolver's policies.
 
 ## Further reading
 
