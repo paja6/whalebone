@@ -1,4 +1,4 @@
-# Knot Resolver
+# Practical Task: Knot Resolver
 
 The purpose of this task is to demonstrate how simple it is to set up Knot Resolver and start blocking malicious domains. You will use Knot Resolver's Docker image due to its installation and initial setup simplicity. However, this approach is recommended only for testing purposes. If you would like to deploy Knot Resolver in a production environment, it is recommended to install it as an ordinary application.
 
