@@ -1,6 +1,6 @@
 # Knot Resolver
 
-This task's purpose is to demonstrate how simple it is to set up Knot Resolver and start blocking malicious domains. You will use Knot Resolver's Docker image due to its simplicity for installation and initial setup. However, this approach is recommended only for testing purposes. If you would like to deploy Knot Resolver in a production environment, it is recommended to install it as an ordinary application.
+The purpose of this task is to demonstrate how simple it is to set up Knot Resolver and start blocking malicious domains. You will use Knot Resolver's Docker image due to its installation and initial setup simplicity. However, this approach is recommended only for testing purposes. If you would like to deploy Knot Resolver in a production environment, it is recommended to install it as an ordinary application.
 
 This guide was created with Knot Resolver 5.7.4.
 
@@ -17,7 +17,7 @@ Download the latest Knot Resolver using the following command:
 docker pull cznic/knot-resolver
 ```
 
-## Run the Docker image
+## Run the Docker Image
 
 The command below runs the Docker image and displays the command prompt that allows you to configure the application.
 
@@ -33,7 +33,7 @@ Command line parameters:
 
 Knot Resolver is now listening on all network interfaces and you can see the configuration command prompt.
 
-## Create a policy
+## Create a Policy
 
 Execute the following command that blocks all DNS requests for the `google.com` domain and its subdomains. Moreover, it sets a custom error message to clarify the reason why the request was denied. 
 
@@ -41,7 +41,7 @@ Execute the following command that blocks all DNS requests for the `google.com` 
 policy.add(policy.suffix(policy.DENY_MSG('Google is not allowed here.'), {todname('google.com.')}))
 ```
 
-## Validate the configuration
+## Validate the Configuration
 
 Knot Resolver is running and has been configured. Now, it is time to validate it does what was intended.
 
@@ -58,7 +58,7 @@ Command line parameters:
 * -vv: Increase the log level.
 * 'udp port 53': Capture only DNS communication on port UDP/53 to keep the output short and comprehensive.
 
-### Query Knot Resolver to resolve an unrestricted domain
+### Query Knot Resolver to Resolve an Unrestricted Domain
 
 Open a new terminal window or tab and enter there the following command:
 
@@ -102,7 +102,7 @@ The output from tcpdump shows two packets. The output should look like this:
 
 As you can see, the DNS server returned the IP addresses that belong to seznam.cz.
 
-### Query Knot Resolver to test if the policy is applied
+### Query Knot Resolver to Test if the Policy is Applied
 
 Open a new terminal window or tab and enter there the following command:
 
@@ -140,7 +140,7 @@ The `Google is not allowed here.` message has been returned by the DNS server to
 
 Congratulations! You have successfully set up a DNS server that blocks DNS requests for malicious sites. The next step is to create an automation that checks blacklisted domains, e.g., https://fabriziosalmi.github.io/blacklists/, and automatically updates the Knot Resolver's policies.
 
-## Further reading
+## Further Reading
 
 * [Knot Resolver website](https://www.knot-resolver.cz)
 * [Knot Resolver documentation](https://www.knot-resolver.cz/documentation/v5.7.4/)
